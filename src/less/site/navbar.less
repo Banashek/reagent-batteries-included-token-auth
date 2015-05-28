@@ -1,0 +1,112 @@
+@import 'mixins';
+@import 'colors';
+
+/* -- Variables -- */
+@nav-width: 60%;
+@border-style: 1px solid @dark-slate;
+
+/* -- Styles -- */
+body {
+    overflow-x: hidden;
+    position: relative;
+}
+
+#page-cover {
+    .opacity(.3);
+    background: black;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar {
+    z-index: 15;
+}
+
+.mobile-menu, body {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#mobile-menu-button {
+    margin-left: 10px;
+}
+
+.container .mobile-menu {
+    float: left;
+}
+
+.mobile-menu {
+    background-color: @mobile-menu-bg;
+    border-right: @border-style;
+    height: 100%;
+    left: -@nav-width;
+    position: fixed;
+    top: 31px;
+    width: @nav-width;
+    z-index: 10;
+
+    a {
+        color: @nav-link;
+        font-weight: bold;
+    }
+
+    .mobile-menu-header {
+        margin-bottom: 11px;
+        margin-top: -1px;
+        color: @dark-slate;
+        h3 {
+            border-top: 1px solid #e3e3e3;
+            border-bottom: 1px solid #e3e3e3;
+            background-color: black;
+            opacity: 0.35;
+            margin-bottom: -13px;
+            color: whitesmoke;
+            padding: 2px 0 2px 2px;
+        }
+    }
+
+    li.active {
+        background-color: @dark-slate;
+        border-top: @border-style;
+        border-bottom: @border-style;
+        .opacity(.45);
+    }
+
+    li a {
+        border-bottom: @border-style;
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+
+    li a:hover {
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+}
+
+.mobile-menu.visible {
+    left: 0px;
+}
+
+.navbar {
+    height: 50px;
+    margin-bottom: 10px;
+    border-radius: 0px;
+}
+
+.hide-body-overflow {
+    overflow: hidden;
+}
+
+.navbar-nav>.active>a {
+    height: 49px;
+}
+
+.dropdown-toggle {
+    height: 49px;
+}

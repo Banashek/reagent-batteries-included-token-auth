@@ -47,7 +47,7 @@
                                         :asset-path   "js/out"
                                         :optimizations :none
                                         :pretty-print  true}}}}
-  :less {:source-paths ["src/less"]
+  :less {:source-paths ["src/less/site"]
          :target-path "resources/public/css"}
 
   :profiles {:dev {:repl-options {:init-ns reagent-batteries-included-basic.repl

@@ -1,0 +1,32 @@
+@success:  #5CB85C;
+@primary:  #428BCA;
+@info:     #5BC0DE;
+@warning:  #F0AD4E;
+@danger:   #D9534F;
+@disabled: #F2F2F2;
+
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .3s;
+}
+
+.btn-base(@btn-type) {
+    color: @btn-type;
+    &:active { background-color: transparent;                                            }
+    &:focus  { outline: 0; background-color: transparent;                                }
+    &:hover  { background-color: lighten(@btn-type, 25%); color: darken(@btn-type, 30%); }
+}
+
+.btn-success.btn-outline { .btn-base(@success); }
+.btn-primary.btn-outline { .btn-base(@primary); }
+.btn-info.btn-outline    { .btn-base(@info);    }
+.btn-warning.btn-outline { .btn-base(@warning); }
+.btn-danger.btn-outline  { .btn-base(@danger);  }
+
+.btn-disabled {
+    border-color: darken(@disabled, 30%);
+    background-color: @disabled;
+    color: darken(@disabled, 30%);
+    pointer-events: none;
+}

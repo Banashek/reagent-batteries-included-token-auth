@@ -14,6 +14,9 @@
      [:meta {:charset "utf-8"}]
      [:meta {:name "viewport"
              :content "width=device-width, initial-scale=1"}]
+     (include-css "css/bootstrap/bootstrap.css")
+     (include-css "css/buttons.css")
+     (include-css "css/navbar.css")
      (include-css (if (env :dev) "css/site.css" "css/site.min.css"))]
     [:body
      [:div#app]
