@@ -20,13 +20,13 @@
 (def mobile-menu-visiable (atom false))
 (def active-route (atom ""))
 
-(defn transition-to [route]
+(defn mobile-nav-click [route active-name]
   (reset! mobile-menu-visiable (not @mobile-menu-visiable))
+  (reset! active-route active-name)
   (secretary/dispatch! route))
 
 (defn active-route? [route-name]
-  (when (= route-name @active-route)
-    {:class "active"}))
+  (if (= route-name @active-route) "active" ""))
 
 (defn mobile-nav []
   [:div {:class "container"}
@@ -34,8 +34,10 @@
      [:div {:class "mobile-menu-header"}
       [:h3 "Base App"]]
      [:ul {:class "nav affix-top"}
-      [:li {:class "mobile-menu-text"} [:a {:href "#/"      :on-click #(transition-to "/")} "Index"]]
-      [:li {:class "mobile-menu-text"} [:a {:href "#/input" :on-click #(transition-to "/input")} "Input"]]]]])
+      [:li {:class (str "mobile-menu-text " (active-route? "index"))}
+       [:a {:href "#/" :on-click #(mobile-nav-click "/" "index")} "Index"]]
+      [:li {:class (str "mobile-menu-text " (active-route? "input"))}
+       [:a {:href "#/input"  :on-click #(mobile-nav-click "/input" "input")}  "Input"]]]]])
 
 (defn desktop-nav []
   [:div {:class "navbar navbar-inverse"}
@@ -49,13 +51,14 @@
       [:span {:class "icon-bar"}]]]
     [:div {:class "navbar-collapse collapse"}
      [:ul {:class "nav navbar-nav nav-desktop"}
-      [:li (active-route? "index") [:a {:href "#/" :on-click #(reset! active-route "index")} "Index"]]
-      [:li (active-route? "input") [:a {:href "#/input" :on-click #(reset! active-route "input")} "Input"]]]]]])
+      [:li {:class (active-route? "index")} [:a {:href "#/" :on-click #(reset! active-route "index")} "Index"]]
+      [:li {:class (active-route? "input")} [:a {:href "#/input" :on-click #(reset! active-route "input")} "Input"]]]]]])
 
 (defn current-page []
   [:div
    [desktop-nav]
    [mobile-nav]
+   [:div {:id (when @mobile-menu-visiable "page-cover")}]
    [(session/get :current-page)]])
 
 ;; -------------------------
