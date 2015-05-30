@@ -18,7 +18,7 @@
   [:input {:type        "text"
            :class       "form-control"
            :value       (:username @state)
-           :placeholder "Filter contents"
+           :placeholder "Github Username"
            :on-change   #(swap! state assoc :username (-> % .-target .-value))}])
 
 (defn get-user-button []
@@ -29,8 +29,9 @@
 
 (defn github-page []
   [:div
-   [:h1 "Example Ajax Request"]
-   [username-input-box]
-   [get-user-button]
+   [:h1 "Example Ajax Requests"]
+   [:div {:id "ajax-form"}
+    [username-input-box]
+    [get-user-button]]
    [:p "Github Username: " (get-in @state [:ajax-info "login"])]
    [:img {:src (get-in @state [:ajax-info "avatar_url"])}]])
