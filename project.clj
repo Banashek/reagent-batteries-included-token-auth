@@ -14,6 +14,7 @@
                  [reagent-utils "0.1.4"]
                  [ring "1.3.2"]
                  [ring/ring-defaults "0.1.4"]
+                 [cljs-ajax "0.3.11"]
                  [prone "0.8.2"]
                  [compojure "1.3.3"]
                  [hiccup "1.0.5"]
