@@ -1,4 +1,4 @@
-(ns reagent-batteries-included-basic.ip
+(ns reagent-batteries-included-basic.github
   (:require [reagent.core :refer [atom]]
             [ajax.core :refer [GET]]))
 
@@ -16,17 +16,18 @@
 
 (defn username-input-box []
   [:input {:type        "text"
+           :class       "form-control"
            :value       (:username @state)
            :placeholder "Filter contents"
            :on-change   #(swap! state assoc :username (-> % .-target .-value))}])
 
 (defn get-user-button []
   [:input {:type     "button"
-           :class    "button"
+           :class    "btn btn-primary btn-outline"
            :value    "Get user info"
            :on-click #(get-github-info (:username @state))}])
 
-(defn ip-page []
+(defn github-page []
   [:div
    [:h1 "Example Ajax Request"]
    [username-input-box]
