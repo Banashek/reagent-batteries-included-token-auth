@@ -1,4 +1,4 @@
-(defproject reagent-batteries-included-basic "0.1.0-SNAPSHOT"
+(defproject reagent-batteries-included-token-auth "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -26,14 +26,14 @@
             [lein-environ "1.0.0"]
             [lein-asset-minifier "0.2.2"]]
 
-  :ring {:handler reagent-batteries-included-basic.handler/app
-         :uberwar-name "reagent-batteries-included-basic.war"}
+  :ring {:handler reagent-batteries-included-token-auth.handler/app
+         :uberwar-name "reagent-batteries-included-token-auth.war"}
 
   :min-lein-version "2.5.0"
 
-  :uberjar-name "reagent-batteries-included-basic.jar"
+  :uberjar-name "reagent-batteries-included-token-auth.jar"
 
-  :main reagent-batteries-included-basic.server
+  :main reagent-batteries-included-token-auth.server
 
   :clean-targets ^{:protect false} [[:cljsbuild :builds :app :compiler :output-dir]
                                     [:cljsbuild :builds :app :compiler :output-to]]
@@ -51,7 +51,7 @@
   :less {:source-paths ["src/less/site"]
          :target-path "resources/public/css"}
 
-  :profiles {:dev {:repl-options {:init-ns reagent-batteries-included-basic.repl
+  :profiles {:dev {:repl-options {:init-ns reagent-batteries-included-token-auth.repl
                                   :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
 
                    :dependencies [[ring-mock "0.1.5"]
@@ -75,12 +75,12 @@
                    :figwheel {:http-server-root "public"
                               :server-port 3449
                               :css-dirs ["resources/public/css"]
-                              :ring-handler reagent-batteries-included-basic.handler/app}
+                              :ring-handler reagent-batteries-included-token-auth.handler/app}
 
                    :env {:dev true}
 
                    :cljsbuild {:builds {:app {:source-paths ["env/dev/cljs"]
-                                              :compiler {:main "reagent-batteries-included-basic.dev"
+                                              :compiler {:main "reagent-batteries-included-token-auth.dev"
                                                          :source-map true}}
                                         :test {:source-paths ["src/cljs"  "test/cljs"]
                                                :compiler {:output-to "target/test.js"

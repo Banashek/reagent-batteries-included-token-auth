@@ -69,20 +69,22 @@ body {
         }
     }
 
-    li.active {
+    .mobile-menu-link.active {
         background-color: @dark-slate;
         border-top: @border-style;
         border-bottom: @border-style;
         .opacity(.45);
     }
 
-    li a {
+    .mobile-menu-link a {
         border-bottom: @border-style;
+        display: block;
         padding-bottom: 5px;
         padding-top: 5px;
+        padding-left: 10px;
     }
 
-    li a:hover {
+    .mobile-menu-link a:hover {
         background-color: transparent;
         cursor: pointer;
     }
@@ -109,4 +111,12 @@ body {
 
 .dropdown-toggle {
     height: 49px;
+}
+
+#log-in-or-out {
+    padding-left: 20px;
+}
+
+.nav-icon {
+    padding-right: 5px;
 }

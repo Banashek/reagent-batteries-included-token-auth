@@ -1,4 +1,4 @@
-(ns reagent-batteries-included-basic.github
+(ns reagent-batteries-included-token-auth.github
   (:require [reagent.core :refer [atom]]
             [ajax.core :refer [GET]]))
 

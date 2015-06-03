@@ -1,12 +1,12 @@
-(ns reagent-batteries-included-basic.core
+(ns reagent-batteries-included-token-auth.core
     (:require [reagent.core :as reagent :refer [atom]]
               [reagent.session :as session]
               [secretary.core :as secretary :include-macros true]
               [goog.events :as events]
               [goog.history.EventType :as EventType]
-              [reagent-batteries-included-basic.index :as index]
-              [reagent-batteries-included-basic.github :as github]
-              [reagent-batteries-included-basic.navigation :as nav :refer [nav-state]])
+              [reagent-batteries-included-token-auth.index :as index]
+              [reagent-batteries-included-token-auth.github :as github]
+              [reagent-batteries-included-token-auth.navigation :as nav :refer [nav-state]])
     (:import goog.History))
 
 (defn current-page []

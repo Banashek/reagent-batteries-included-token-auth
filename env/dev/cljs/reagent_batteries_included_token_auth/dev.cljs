@@ -1,5 +1,5 @@
-(ns ^:figwheel-no-load reagent-batteries-included-basic.dev
-  (:require [reagent-batteries-included-basic.core :as core]
+(ns ^:figwheel-no-load reagent-batteries-included-token-auth.dev
+  (:require [reagent-batteries-included-token-auth.core :as core]
             [figwheel.client :as figwheel :include-macros true]
             [weasel.repl :as weasel]
             [reagent.core :as r]))

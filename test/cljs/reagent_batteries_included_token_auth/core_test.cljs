@@ -1,7 +1,7 @@
-(ns reagent-batteries-included-basic.core-test
+(ns reagent-batteries-included-token-auth.core-test
   (:require [cemerick.cljs.test :refer-macros [is are deftest testing use-fixtures done]]
             [reagent.core :as reagent :refer [atom]]
-            [reagent-batteries-included-basic.core :as rc]))
+            [reagent-batteries-included-token-auth.core :as rc]))
 
 
 (def isClient (not (nil? (try (.-document js/window)

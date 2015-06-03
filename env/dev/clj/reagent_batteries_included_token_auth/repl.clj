@@ -1,6 +1,6 @@
-(ns reagent-batteries-included-basic.repl
-  (:use reagent-batteries-included-basic.handler
-        reagent-batteries-included-basic.dev
+(ns reagent-batteries-included-token-auth.repl
+  (:use reagent-batteries-included-token-auth.handler
+        reagent-batteries-included-token-auth.dev
         ring.server.standalone
         [ring.middleware file-info file]))
 

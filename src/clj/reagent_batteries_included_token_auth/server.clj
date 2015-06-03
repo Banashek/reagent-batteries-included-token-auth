@@ -1,5 +1,5 @@
-(ns reagent-batteries-included-basic.server
-  (:require [reagent-batteries-included-basic.handler :refer [app]]
+(ns reagent-batteries-included-token-auth.server
+  (:require [reagent-batteries-included-token-auth.handler :refer [app]]
             [environ.core :refer [env]]
             [ring.adapter.jetty :refer [run-jetty]])
   (:gen-class))

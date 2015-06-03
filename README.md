@@ -1,7 +1,10 @@
-# Reagent batteries include basic
+# NOTICE
 
-Based off the reagent template this project provides a basic starting place for ClojureScript apps.
-The primary feature that is has beyond the basic reagent template is responsive navigation.
+This is a work in progress. Not currently fully functional
+
+# Reagent batteries include token auth
+
+A Reagent app that provides a responsive navigation and fully functional token authentication.
 
 ## Run locally
 

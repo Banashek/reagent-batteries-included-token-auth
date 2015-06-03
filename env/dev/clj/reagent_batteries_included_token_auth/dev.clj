@@ -1,4 +1,4 @@
-(ns reagent-batteries-included-basic.dev
+(ns reagent-batteries-included-token-auth.dev
   (:require [cemerick.piggieback :as piggieback]
             [weasel.repl.websocket :as weasel]
             [leiningen.core.main :as lein]))
