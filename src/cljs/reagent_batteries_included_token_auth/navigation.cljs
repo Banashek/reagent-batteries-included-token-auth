@@ -20,10 +20,10 @@
    [:li {:class "dropdown"}
     [:a {:class "dropdown-toggle" :data-toggle "dropdown"} "Login" [:b {:class "caret"}]]
     [:ul {:class "dropdown-menu"}
-     [:li [:a {:href "#/"} [:i {:class "nav-icon icon glyphicon glyphicon-user"}] "Register"]]
-     [:li [:a {:href "#/"} [:i {:class "nav-icon icon glyphicon glyphicon-search"}] "Lost Password?"]]
+     [:li [:a {:href "#/register"} [:i {:class "nav-icon icon glyphicon glyphicon-user"}] "Register"]]
+     [:li [:a {:href "#/lost-pass"} [:i {:class "nav-icon icon glyphicon glyphicon-search"}] "Lost Password?"]]
      [:li {:class "divider"}]
-     [:li {:id "log-in-or-out"} [:a {:href "#/"}] [:i {:class "nav-icon icon glyphicon glyphicon-off"}] "Login"]]]])
+     [:li {:id "log-in-or-out"} [:a {:href "#/login"} [:i {:class "nav-icon icon glyphicon glyphicon-off"}] "Login"]]]]])
 
 (defn auth-nav-mobile []
   [:div
@@ -31,9 +31,12 @@
     (if (not-empty (:example-token @global))
       [:h3 "Logout"]
       [:h3 "Login"])]
-   [:li {:class "mobile-menu-link"} [:a {:href "#/" :on-click #(mobile-nav-click "/" "register")} "Register"]]
-   [:li {:class "mobile-menu-link"} [:a {:href "#/" :on-click #(mobile-nav-click "/" "register")} "Lost Password?"]]
-   [:li {:class "mobile-menu-link"} [:a {:href "#/" :on-click #(mobile-nav-click "/" "register")} "Login"]]])
+   [:li {:class (str "mobile-menu-link " (active-route? "register"))}
+    [:a {:href "#/register" :on-click #(mobile-nav-click "/register" "register")} "Register"]]
+   [:li {:class (str "mobile-menu-link " (active-route? "lost-pass"))}
+    [:a {:href "#/lost-pass" :on-click #(mobile-nav-click "/lost-pass" "lost-pass")} "Lost Password?"]]
+   [:li {:class (str "mobile-menu-link " (active-route? "login"))}
+    [:a {:href "#/login" :on-click #(mobile-nav-click "/login" "login")} "Login"]]])
 
 ; Mobile menu when we do have a token
 ;[:li {:class "mobile-menu-link"} [:a {:href "#/" :on-click #(mobile-nav-click "/" "register")} "Change Password"]]
