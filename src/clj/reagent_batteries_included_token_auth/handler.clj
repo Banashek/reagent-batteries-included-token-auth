@@ -2,6 +2,7 @@
   (:require [compojure.core :refer [GET defroutes]]
             [compojure.route :refer [not-found resources]]
             [ring.middleware.defaults :refer [site-defaults wrap-defaults]]
+            [ring.middleware.reload :refer [wrap-reload]]
             [hiccup.core :refer [html]]
             [hiccup.page :refer [include-js include-css]]
             [prone.middleware :refer [wrap-exceptions]]
@@ -17,6 +18,7 @@
      (include-css "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
      (include-css "css/buttons.css")
      (include-css "css/navbar.css")
+     (include-css "css/auth/login.css")
      (include-css (if (env :dev) "css/site.css" "css/site.min.css"))]
     [:body
      (include-js "http://code.jquery.com/jquery-2.1.4.min.js")
@@ -30,5 +32,5 @@
   (not-found "Not Found"))
 
 (def app
-  (let [handler (wrap-defaults routes site-defaults)]
-    (if (env :dev) (wrap-exceptions handler) handler)))
+  (let [handler (wrap-defaults #'routes site-defaults)]
+    (if (env :dev) (-> handler wrap-exceptions wrap-reload) handler)))

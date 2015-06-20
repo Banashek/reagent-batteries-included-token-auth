@@ -6,25 +6,27 @@
 
   :source-paths ["src/clj" "src/cljs"]
 
-  :dependencies [[org.clojure/clojure "1.7.0-RC1"]
+  :dependencies [[org.clojure/clojure "1.7.0-RC2"]
                  [ring-server "0.4.0"]
-                 [cljsjs/react "0.13.1-0"]
+                 [cljsjs/react "0.13.3-0"]
                  [reagent "0.5.0"]
                  [reagent-forms "0.5.1"]
                  [reagent-utils "0.1.4"]
                  [ring "1.3.2"]
-                 [ring/ring-defaults "0.1.4"]
+                 [ring/ring-defaults "0.1.5"]
                  [cljs-ajax "0.3.11"]
                  [prone "0.8.2"]
-                 [compojure "1.3.3"]
+                 [compojure "1.3.4"]
                  [hiccup "1.0.5"]
                  [environ "1.0.0"]
-                 [org.clojure/clojurescript "0.0-3291" :scope "provided"]
+                 [alandipert/storage-atom "1.2.4"]
+                 [org.clojure/clojurescript "0.0-3308" :scope "provided"]
                  [secretary "1.2.3"]]
 
-  :plugins [[lein-ring "0.9.1"]
-            [lein-environ "1.0.0"]
-            [lein-asset-minifier "0.2.2"]]
+  :plugins [[lein-environ "1.0.0"]
+            [lein-asset-minifier "0.2.2"]
+            [lein-figwheel "0.3.3"]
+            [lein-cljsbuild "1.0.6"]]
 
   :ring {:handler reagent-batteries-included-token-auth.handler/app
          :uberwar-name "reagent-batteries-included-token-auth.war"}
@@ -48,25 +50,20 @@
                                         :asset-path   "js/out"
                                         :optimizations :none
                                         :pretty-print  true}}}}
-  :less {:source-paths ["src/less/site"]
+  :less {:source-paths ["src/less/site" "src/less/site/auth"]
          :target-path "resources/public/css"}
 
-  :profiles {:dev {:repl-options {:init-ns reagent-batteries-included-token-auth.repl
-                                  :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+  :profiles {:dev {:repl-options {:init-ns reagent-batteries-included-token-auth.repl}
 
                    :dependencies [[ring-mock "0.1.5"]
                                   [ring/ring-devel "1.3.2"]
-                                  [weasel "0.6.0"]
                                   [leiningen-core "2.5.1"]
                                   [lein-figwheel "0.3.3"]
-                                  [com.cemerick/piggieback "0.2.1"]
                                   [org.clojure/tools.nrepl "0.2.10"]
                                   [pjstadig/humane-test-output "0.7.0"]]
 
                    :source-paths ["env/dev/clj"]
-                   :plugins [[lein-figwheel "0.3.3"]
-                             [lein-cljsbuild "1.0.6"]
-                             [com.cemerick/clojurescript.test "0.3.2"]
+                   :plugins [[com.cemerick/clojurescript.test "0.3.2"]
                              [lein-less "1.7.2"]]
 
                    :injections [(require 'pjstadig.humane-test-output)
@@ -74,6 +71,7 @@
 
                    :figwheel {:http-server-root "public"
                               :server-port 3449
+                              :nrepl-port 7888
                               :css-dirs ["resources/public/css"]
                               :ring-handler reagent-batteries-included-token-auth.handler/app}
 

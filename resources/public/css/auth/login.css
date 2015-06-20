@@ -1,0 +1,59 @@
+.base-wrapper {
+  background-color: #efefef;
+  border: 1px solid #e3e3e3;
+  border-radius: 3px;
+  max-width: 400px;
+  margin: 85px auto 20px auto;
+  padding: 15px;
+}
+.base-wrapper h1 {
+  text-align: center;
+  margin-top: 5px;
+}
+.base-wrapper button {
+  margin: 0px auto 8px auto;
+}
+#login-wrapper {
+  background-color: #efefef;
+  border: 1px solid #e3e3e3;
+  border-radius: 3px;
+  max-width: 400px;
+  margin: 85px auto 20px auto;
+  padding: 15px;
+}
+#login-wrapper h1 {
+  text-align: center;
+  margin-top: 5px;
+}
+#login-wrapper button {
+  margin: 0px auto 8px auto;
+}
+#login-wrapper a {
+  color: #3e3e3e;
+  text-decoration: underline;
+}
+#login-wrapper h1 {
+  text-align: center;
+  margin-top: 5px;
+}
+#login-wrapper #login-submit-btn {
+  width: 100%;
+}
+#login-wrapper #pass-toggle {
+  color: #3e3e3e;
+  cursor: pointer;
+  float: right;
+  right: 10px;
+  top: -19px;
+}
+#login-wrapper #login-password {
+  margin-top: 8px;
+  margin-bottom: -5px;
+}
+#login-wrapper .forgot-pass-link {
+  text-align: right;
+}
+#login-wrapper .login-links-row {
+  margin-top: 7px;
+  margin-bottom: -6px;
+}
