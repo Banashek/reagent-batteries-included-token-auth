@@ -4,18 +4,16 @@
             [goog.crypt.base64 :as b64]
             [reagent-batteries-included-token-auth.shared-state :as ss]))
 
-;; ========
-(.log js/console "<><****><>")
-(.log js/console (:user-token @ss/auth-creds))
-(.log js/console "<><****><>")
-;; ========
-
 (def placehold-state (atom {:password-visible false :ajax-info {}}))
 
 (defn toggle-visibility []
   (swap! placehold-state assoc :password-visible (not (:password-visible @placehold-state))))
 
 (defn response-handler [response]
+  (swap! ss/auth-creds assoc :token (:token response))
+  (swap! ss/auth-creds assoc :refresh-token (:refreshToken response))
+  (swap! ss/auth-creds assoc :permissions (:permissions response))
+  (swap! ss/auth-creds assoc :username (:username response))
   (swap! placehold-state assoc :ajax-info response))
 
 (defn error-handler [{:keys [status status-text]}]
@@ -28,7 +26,10 @@
 (defn attempt-login []
   (GET "https://button-pusher-server.herokuapp.com/api/auth" {:headers       {"Authorization" (auth-header)}
                                                               :handler       response-handler
-                                                              :error-handler error-handler}))
+                                                              :error-handler error-handler
+                                                              :response-format :json
+                                                              :keywords? true
+                                                              :prefix true}))
 
 (defn login-page []
   [:div {:id "login-wrapper"}
