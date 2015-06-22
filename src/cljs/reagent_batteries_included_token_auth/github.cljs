@@ -1,8 +1,8 @@
 (ns reagent-batteries-included-token-auth.github
-  (:require [reagent.core :refer [atom]]
+  (:require [reagent.core :as ratom]
             [ajax.core :refer [GET]]))
 
-(def state (atom {:ajax-info {"login" "", "avatar_url" ""} :username ""}))
+(def state (ratom/atom {:ajax-info {"login" "", "avatar_url" ""} :username ""}))
 
 (defn response-handler [response]
   (swap! state assoc :ajax-info response))

@@ -1,20 +1,19 @@
 (ns reagent-batteries-included-token-auth.login
-  (:require [reagent.core :refer [atom]]
+  (:require [reagent.core :as ratom]
             [ajax.core :refer [GET]]
             [goog.crypt.base64 :as b64]
             [reagent-batteries-included-token-auth.shared-state :as ss]))
 
-(def placehold-state (atom {:password-visible false :ajax-info {}}))
+(def password-state (ratom/atom {:password-visible false :ajax-info {}}))
 
 (defn toggle-visibility []
-  (swap! placehold-state assoc :password-visible (not (:password-visible @placehold-state))))
+  (swap! password-state assoc :password-visible (not (:password-visible @password-state))))
 
 (defn response-handler [response]
-  (swap! ss/auth-creds assoc :token (:token response))
-  (swap! ss/auth-creds assoc :refresh-token (:refreshToken response))
-  (swap! ss/auth-creds assoc :permissions (:permissions response))
-  (swap! ss/auth-creds assoc :username (:username response))
-  (swap! placehold-state assoc :ajax-info response))
+  (swap! ss/auth-creds-ls assoc :token (:token response))
+  (swap! ss/auth-creds-ls assoc :refresh-token (:refreshToken response))
+  (swap! ss/auth-creds-ls assoc :permissions (:permissions response))
+  (swap! ss/auth-creds-ls assoc :username (:username response)))
 
 (defn error-handler [{:keys [status status-text]}]
   (.log js/console (str "That was not what we were going for: " status " " status-text)))
@@ -35,8 +34,8 @@
   [:div {:id "login-wrapper"}
    [:h1 "Log In "]
    [:input {:type "text" :id "login-username" :class "form-control" :placeholder "Username or Email"}]
-   [:input {:type (if (:password-visible @placehold-state) "text" "password") :id "login-password" :class "form-control" :placeholder "Password"}]
-   [:div {:id "pass-toggle" :class (str "glyphicon " (if (:password-visible @placehold-state) "glyphicon-eye-open" "glyphicon-eye-close")) :on-click #(toggle-visibility)}]
+   [:input {:type (if (:password-visible @password-state) "text" "password") :id "login-password" :class "form-control" :placeholder "Password"}]
+   [:div {:id "pass-toggle" :class (str "glyphicon " (if (:password-visible @password-state) "glyphicon-eye-open" "glyphicon-eye-close")) :on-click #(toggle-visibility)}]
    [:input {:type "button" :id "login-submit-btn" :class "btn btn-info btn-outline" :value "Log In" :on-click #(attempt-login)}]
    [:div {:class "row login-links-row"}
     [:div {:class "col-xs-6"} [:a {:href "google.com"} "Register"]]
