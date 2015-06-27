@@ -25,6 +25,11 @@
      [:li {:class "divider"}]
      [:li {:id "log-in-or-out"} [:a {:href "#/login"} [:i {:class "nav-icon icon glyphicon glyphicon-off"}] "Login"]]]]])
 
+(let [username (:username @auth-creds-ratom)]
+  (if username
+    (.log js/console (str "We have user: " username))
+    (.log js/console "No user yet")))
+
 (defn auth-nav-mobile []
   [:div
    [:div {:class "mobile-menu-header"}

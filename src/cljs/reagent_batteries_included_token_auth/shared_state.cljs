@@ -12,14 +12,10 @@
 
 (add-watch auth-creds-ls :anything
   (fn [key atom old-state new-state]
-    (.log js/console "-- Atom Changed --")
-    (.log js/console "key" key)
-    (.log js/console "atom" atom)
-    (.log js/console "old-state" old-state)
-    (.log js/console "new-state" new-state)))
+    (reset! auth-creds-ratom new-state)))
 
-(.log js/console (:username @auth-creds-ls))
-(remove-local-storage! :auth-creds)
+; (.log js/console @auth-creds-ratom)
+; (remove-local-storage! :auth-creds)
 
 ; (swap! auth-creds assoc :user-token "777zzz")
 
