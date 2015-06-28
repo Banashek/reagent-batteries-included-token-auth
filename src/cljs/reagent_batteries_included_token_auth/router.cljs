@@ -1,4 +1,4 @@
-(ns reagent-batteries-included-token-auth.core
+(ns reagent-batteries-included-token-auth.router
     (:require [reagent.core :as reagent :refer [atom]]
               [reagent.session :as session]
               [secretary.core :as secretary :include-macros true]
@@ -37,6 +37,7 @@
 
 (secretary/defroute "/lost-pass" []
   (session/put! :current-page #'lost-pass/lost-pass-page))
+
 ;; -------------------------
 ;; History
 ;; must be called after routes have been defined
