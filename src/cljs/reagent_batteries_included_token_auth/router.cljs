@@ -6,18 +6,18 @@
               [goog.history.EventType :as EventType]
               [reagent-batteries-included-token-auth.index :as index]
               [reagent-batteries-included-token-auth.github :as github]
-              [reagent-batteries-included-token-auth.login :as login]
-              [reagent-batteries-included-token-auth.register :as register]
-              [reagent-batteries-included-token-auth.lost-pass :as lost-pass]
+              [reagent-batteries-included-token-auth.auth.login :as login]
+              [reagent-batteries-included-token-auth.auth.register :as register]
+              [reagent-batteries-included-token-auth.auth.lost-pass :as lost-pass]
               [reagent-batteries-included-token-auth.navigation :as nav :refer [nav-state]])
     (:import goog.History))
 
 (defn current-page []
   [:div
-   [nav/desktop-nav]
-   [nav/mobile-nav]
-   [:div {:id (when (:mobile-menu-visiable @nav-state) "page-cover")}]
-   [(session/get :current-page)]])
+    [nav/desktop-nav]
+    [nav/mobile-nav]
+    [:div {:id (when (:mobile-menu-visiable @nav-state) "page-cover")}]
+    [(session/get :current-page)]])
 
 ;; -------------------------
 ;; Routes

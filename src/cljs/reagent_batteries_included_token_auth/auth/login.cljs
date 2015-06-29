@@ -1,4 +1,4 @@
-(ns reagent-batteries-included-token-auth.login
+(ns reagent-batteries-included-token-auth.auth.login
   (:require [reagent.core :as ratom]
             [ajax.core :refer [GET]]
             [goog.crypt.base64 :as b64]

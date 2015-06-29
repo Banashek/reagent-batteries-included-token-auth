@@ -1,4 +1,4 @@
-(ns reagent-batteries-included-token-auth.register)
+(ns reagent-batteries-included-token-auth.auth.register)
 
 (defn registration-page []
   [:div
