@@ -9,7 +9,8 @@
               [reagent-batteries-included-token-auth.auth.login :as login]
               [reagent-batteries-included-token-auth.auth.register :as register]
               [reagent-batteries-included-token-auth.auth.lost-pass :as lost-pass]
-              [reagent-batteries-included-token-auth.navigation :as nav :refer [nav-state]])
+              [reagent-batteries-included-token-auth.shared-state :refer [nav-state]]
+              [reagent-batteries-included-token-auth.navigation :as nav])
     (:import goog.History))
 
 (defn current-page []

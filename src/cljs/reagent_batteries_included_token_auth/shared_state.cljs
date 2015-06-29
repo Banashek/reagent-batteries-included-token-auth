@@ -10,6 +10,8 @@
   (fn [key atom old-state new-state]
     (reset! auth-creds-ratom new-state)))
 
+(def nav-state (ratom/atom {:mobile-menu-visiable false :active-route ""}))
+
 ;; ==========
 ;  Perhaps useful for debugging
 ;; ==========
