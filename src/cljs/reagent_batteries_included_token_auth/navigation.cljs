@@ -2,8 +2,7 @@
   (:require [reagent-batteries-included-token-auth.shared-state :refer [nav-state]]
             [reagent-batteries-included-token-auth.shared-functions :refer [active-route?]]
             [reagent-batteries-included-token-auth.auth.navigation :refer [auth-nav-mobile auth-nav-desktop]]
-            [reagent-batteries-included-token-auth.shared-functions :refer [mobile-nav-click]]
-            [secretary.core :as secretary :include-macros true]))
+            [reagent-batteries-included-token-auth.shared-functions :refer [mobile-nav-click]]))
 
 (defn mobile-nav []
   [:div {:class "container"}

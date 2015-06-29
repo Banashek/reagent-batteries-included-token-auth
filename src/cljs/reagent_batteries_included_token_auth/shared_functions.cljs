@@ -1,7 +1,6 @@
 (ns reagent-batteries-included-token-auth.shared-functions
   (:require [alandipert.storage-atom :refer [local-storage]]
             [reagent-batteries-included-token-auth.shared-state :refer [nav-state]]
-            [reagent.core :as ratom]
             [secretary.core :as secretary :include-macros true]))
 
 (defn mobile-nav-click [route active-name]

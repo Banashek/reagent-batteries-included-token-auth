@@ -1,8 +1,7 @@
 (ns reagent-batteries-included-token-auth.auth.navigation
   (:require [reagent-batteries-included-token-auth.shared-state :refer [auth-creds-ratom]]
             [reagent-batteries-included-token-auth.shared-functions :refer [mobile-nav-click active-route?]]
-            [alandipert.storage-atom :refer [remove-local-storage!]]
-            [secretary.core :as secretary :include-macros true]))
+            [alandipert.storage-atom :refer [remove-local-storage!]]))
 
 (defn auth-nav-logged-in []
   [:ul {:class "nav navbar-nav navbar-right"}
