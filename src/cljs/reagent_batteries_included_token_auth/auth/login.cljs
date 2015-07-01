@@ -50,6 +50,9 @@
 (defn login-page []
   [:div {:id "login-wrapper"}
     [:h1 "Log In "]
+    ;; === TESTING ===
+    [:input {:type "button" :id "login-submit-btn" :class "btn btn-info btn-outline" :value "Test flash" :on-click #(reset! ss/flash-message "Oh yeah flash")}]
+    ;; === /TESTING ===
     [username-input-box]
     [password-input-box]
     [:div {:id "pass-toggle" :class (str "glyphicon " (if @password-visible "glyphicon-eye-open" "glyphicon-eye-close")) :on-click #(toggle-visibility)}]

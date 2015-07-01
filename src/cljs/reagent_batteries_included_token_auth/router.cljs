@@ -9,7 +9,7 @@
               [reagent-batteries-included-token-auth.auth.login :as login]
               [reagent-batteries-included-token-auth.auth.register :as register]
               [reagent-batteries-included-token-auth.auth.lost-pass :as lost-pass]
-              [reagent-batteries-included-token-auth.shared-state :refer [nav-state]]
+              [reagent-batteries-included-token-auth.shared-state :refer [nav-state flash-message]]
               [reagent-batteries-included-token-auth.navigation :as nav])
     (:import goog.History))
 
@@ -18,6 +18,7 @@
     [nav/desktop-nav]
     [nav/mobile-nav]
     [:div {:id (when (:mobile-menu-visiable @nav-state) "page-cover")}]
+    [:div {:id "flash-messages"} [:h2 @flash-message]]
     [(session/get :current-page)]])
 
 ;; -------------------------

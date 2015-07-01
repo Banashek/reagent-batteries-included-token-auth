@@ -4,20 +4,18 @@
 
 (def auth-creds-ls (local-storage (atom {}) :auth-creds))
 (def auth-creds-ratom (ratom/atom {}))
-(reset! auth-creds-ratom @auth-creds-ls)
-
-(add-watch auth-creds-ls :anything
-  (fn [key atom old-state new-state]
-    (reset! auth-creds-ratom new-state)))
-
+(def flash-message (ratom/atom ""))
 (def nav-state (ratom/atom {:mobile-menu-visiable false :active-route ""}))
 
-;; ==========
-;  Perhaps useful for debugging
-;; ==========
-; (defn get-storage-atom-local-value [key-name]
-;  (.getItem js/localStorage (str "[\"k\",\"" key-name "\"]")))
+;; ====
+;  On booting the app get auth-creds from localStorage
+;; ====
+(reset! auth-creds-ratom @auth-creds-ls)
 
-; (.log js/console "<>=<>")
-; (.log js/console (get-storage-atom-local-value "auth-creds"))
-; (.log js/console "<>=<>")
+(add-watch flash-message :the-flash
+  (fn [key atom old-state new-state]
+    (js/setTimeout #(reset! flash-message "") 3000)))
+
+(add-watch auth-creds-ls :cred-change
+  (fn [key atom old-state new-state]
+    (reset! auth-creds-ratom new-state)))
