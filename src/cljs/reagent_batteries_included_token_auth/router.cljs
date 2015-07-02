@@ -18,7 +18,8 @@
     [nav/desktop-nav]
     [nav/mobile-nav]
     [:div {:id (when (:mobile-menu-visiable @nav-state) "page-cover")}]
-    [:div {:id "flash-messages"} [:h2 @flash-message]]
+    (if (not-empty @flash-message)
+      [:div {:id "flash-messages" :class "alert alert-danger"} [:p @flash-message]])
     [(session/get :current-page)]])
 
 ;; -------------------------
