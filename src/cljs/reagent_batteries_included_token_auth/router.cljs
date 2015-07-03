@@ -17,10 +17,12 @@
   [:div
     [nav/desktop-nav]
     [nav/mobile-nav]
-    [:div {:id (when (:mobile-menu-visiable @nav-state) "page-cover")}]
-    (if (not-empty @flash-message)
-      [:div {:id "flash-messages" :class "alert alert-danger"} [:p @flash-message]])
-    [(session/get :current-page)]])
+    [:div {:class "container"}
+      [:div {:id (when (:mobile-menu-visiable @nav-state) "page-cover")}]
+      (if (not-empty @flash-message)
+        (let [{:keys [kind text]} @flash-message]
+          [:div {:class (str "alert flash-message alert-" kind " flash-" kind)} [:p text]]))
+      [(session/get :current-page)]]])
 
 ;; -------------------------
 ;; Routes

@@ -15,7 +15,7 @@
 (add-watch flash-message :the-flash
   (fn [key atom old-state new-state]
     (if (not= new-state "")
-      (js/setTimeout #(reset! flash-message "") 2000))))
+      (js/setTimeout #(reset! flash-message "") 3000))))
 
 (add-watch auth-creds-ls :cred-change
   (fn [key atom old-state new-state]

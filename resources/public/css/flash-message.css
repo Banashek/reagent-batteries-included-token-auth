@@ -1,0 +1,33 @@
+@media (min-width: 768px) {
+  .flash-message {
+    float: right;
+  }
+  .flash-message:before,
+  .flash-message:after {
+    content: " ";
+    display: table;
+  }
+  .flash-message:after {
+    clear: both;
+  }
+}
+.flash-message {
+  border: 3px solid;
+  color: black;
+}
+.flash-default {
+  border-color: #3e3e3e;
+  background-color: rgba(62, 62, 62, 0.5);
+}
+.flash-success {
+  border-color: #4ec070;
+  background-color: rgba(78, 192, 112, 0.1);
+}
+.flash-info {
+  border-color: #5991ca;
+  background-color: rgba(89, 145, 202, 0.1);
+}
+.flash-error {
+  border-color: #a43b3b;
+  background-color: rgba(164, 59, 59, 0.1);
+}

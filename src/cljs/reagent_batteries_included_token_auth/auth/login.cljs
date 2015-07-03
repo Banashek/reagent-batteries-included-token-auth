@@ -14,11 +14,12 @@
   (swap! ss/auth-creds-ls assoc :token (:token response))
   (swap! ss/auth-creds-ls assoc :refresh-token (:refreshToken response))
   (swap! ss/auth-creds-ls assoc :permissions (:permissions response))
-  (swap! ss/auth-creds-ls assoc :username (:username response)))
+  (swap! ss/auth-creds-ls assoc :username (:username response))
+  (reset! credentials {:username "" :password ""})
+  (reset! ss/flash-message {:kind "success" :text (str "Welcome " (:username response))}))
 
 (defn error-handler [{:keys [status status-text]}]
-  (.log js/console (str "That was not what we were going for: " status " " status-text)))
-
+  (reset! ss/flash-message {:kind "error" :text status-text}))
 
 (defn auth-header []
   (str "Basic " (b64/encodeString (str (:username @credentials) ":" (:password @credentials)))))
@@ -50,9 +51,6 @@
 (defn login-page []
   [:div {:id "login-wrapper"}
     [:h1 "Log In "]
-    ;; === TESTING ===
-    [:input {:type "button" :id "login-submit-btn" :class "btn btn-info btn-outline" :value "Test flash" :on-click #(reset! ss/flash-message "Oh yeah flash")}]
-    ;; === /TESTING ===
     [username-input-box]
     [password-input-box]
     [:div {:id "pass-toggle" :class (str "glyphicon " (if @password-visible "glyphicon-eye-open" "glyphicon-eye-close")) :on-click #(toggle-visibility)}]

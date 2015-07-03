@@ -1,0 +1,34 @@
+@import 'mixins';
+@import 'colors';
+
+@media (min-width: 768px) {
+    .flash-message {
+        float: right;
+        .clearfix;
+    }
+}
+
+.flash-message {
+    border: 3px solid;
+    color: black;
+}
+
+.flash-default {
+    border-color: @flash-default;
+    background-color: fade(@flash-default, 50%);
+}
+
+.flash-success {
+    border-color: @flash-success;
+    background-color: fade(@flash-success, 10%);
+}
+
+.flash-info {
+    border-color: @flash-info;
+    background-color: fade(@flash-info, 10%);
+}
+
+.flash-error {
+    border-color: @flash-error;
+    background-color: fade(@flash-error, 10%);
+}

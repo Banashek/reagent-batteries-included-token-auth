@@ -16,9 +16,7 @@
      [:meta {:name "viewport"
              :content "width=device-width, initial-scale=1"}]
      (include-css "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
-     (include-css "css/buttons.css")
-     (include-css "css/navbar.css")
-     (include-css "css/auth/login.css")
+     (include-css "css/site.css")
      (include-css (if (env :dev) "css/site.css" "css/site.min.css"))]
     [:body
      (include-js "http://code.jquery.com/jquery-2.1.4.min.js")
