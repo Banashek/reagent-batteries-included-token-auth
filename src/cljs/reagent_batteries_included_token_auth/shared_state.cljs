@@ -6,6 +6,7 @@
 (def auth-creds-ratom (ratom/atom {}))
 (def flash-message (ratom/atom ""))
 (def nav-state (ratom/atom {:mobile-menu-visiable false :active-route ""}))
+(def secured-route (ratom/atom ""))
 
 ;; ====
 ;  On booting the app get auth-creds from localStorage

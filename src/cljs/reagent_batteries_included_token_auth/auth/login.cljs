@@ -1,7 +1,9 @@
 (ns reagent-batteries-included-token-auth.auth.login
   (:require [reagent.core :as ratom]
+            [reagent.session :as session]
             [ajax.core :refer [GET]]
             [goog.crypt.base64 :as b64]
+            [reagent-batteries-included-token-auth.index :as index]
             [reagent-batteries-included-token-auth.shared-state :as ss]))
 
 (def password-visible (ratom/atom false))
@@ -16,7 +18,10 @@
   (swap! ss/auth-creds-ls assoc :permissions (:permissions response))
   (swap! ss/auth-creds-ls assoc :username (:username response))
   (reset! credentials {:username "" :password ""})
-  (reset! ss/flash-message {:kind "success" :text (str "Welcome " (:username response))}))
+  (reset! ss/flash-message {:kind "success" :text (str "Welcome " (:username response))})
+  (if (= @ss/secured-route "")
+    (session/put! :current-page #'index/index-page)
+    (do (session/put! :current-page @ss/secured-route) (reset! ss/secured-route ""))))
 
 (defn error-handler [{:keys [status status-text]}]
   (reset! ss/flash-message {:kind "error" :text status-text}))
