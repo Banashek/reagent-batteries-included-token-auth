@@ -32,7 +32,7 @@
   (session/put! :current-page #'index/index-page))
 
 (secretary/defroute "/github" []
-  (session/put! :current-page #'github/github-page))
+  (session/put! :current-page #'github/authenticated-page))
 
 (secretary/defroute "/login" []
   (session/put! :current-page #'login/login-page))
