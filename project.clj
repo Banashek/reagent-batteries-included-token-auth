@@ -85,7 +85,7 @@
                                                :compiler {:output-to "target/test.js"
                                                           :optimizations :whitespace
                                                           :pretty-print true}}}
-                               :test-commands {"unit" ["phantomjs" :runner
+                               :test-commands {"unit" ["slimerjs" :runner
                                                        "test/vendor/es5-shim.js"
                                                        "test/vendor/es5-sham.js"
                                                        "test/vendor/console-polyfill.js"

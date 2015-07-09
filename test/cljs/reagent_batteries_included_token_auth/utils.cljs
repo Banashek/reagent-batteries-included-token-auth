@@ -1,8 +1,5 @@
-(ns reagent-batteries-included-token-auth.core-test
-  (:require [cemerick.cljs.test :refer-macros [is are deftest testing use-fixtures done]]
-            [reagent.core :as reagent :refer [atom]]
-            [reagent-batteries-included-token-auth.core :as rc]))
-
+(ns reagent-batteries-included-token-auth.utils
+  (:require [reagent.core :as reagent]))
 
 (def isClient (not (nil? (try (.-document js/window)
                               (catch js/Object e nil)))))
@@ -24,16 +21,6 @@
         (reagent/flush)
         (.removeChild (.-body js/document) div)))))
 
-
-(defn found-in [re div]
+(defn found? [re div]
   (let [res (.-innerHTML div)]
-    (if (re-find re res)
-      true
-      (do (println "Not found: " res)
-          false))))
-
-
-(deftest test-home
-  (with-mounted-component (rc/home-page)
-    (fn [c div]
-      (is (found-in #"Welcome to" div)))))
+    (if (re-find re res) true false)))
