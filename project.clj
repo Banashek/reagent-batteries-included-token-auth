@@ -20,6 +20,7 @@
                  [hiccup "1.0.5"]
                  [environ "1.0.0"]
                  [alandipert/storage-atom "1.2.4"]
+                 [com.andrewmcveigh/cljs-time "0.3.10"]
                  [org.clojure/clojurescript "0.0-3308" :scope "provided"]
                  [secretary "1.2.3"]]
 

@@ -3,6 +3,8 @@
             [reagent.session :as session]
             [ajax.core :refer [GET]]
             [goog.crypt.base64 :as b64]
+            [cljs-time.core :as t]
+            [cljs-time.coerce :as coerce-t]
             [reagent-batteries-included-token-auth.index :as index]
             [reagent-batteries-included-token-auth.shared-state :as ss]))
 
@@ -17,6 +19,7 @@
   (swap! ss/auth-creds-ls assoc :refresh-token (:refreshToken response))
   (swap! ss/auth-creds-ls assoc :permissions (:permissions response))
   (swap! ss/auth-creds-ls assoc :username (:username response))
+  (swap! ss/auth-creds-ls assoc :time-stamp (coerce-t/to-long (t/date-time (t/now))))
   (reset! credentials {:username "" :password ""})
   (reset! ss/flash-message {:kind "success" :text (str "Welcome " (:username response))})
   (if (= @ss/secured-route "")
