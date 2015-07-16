@@ -1,0 +1,36 @@
+.base-wrapper {
+  background-color: #efefef;
+  border: 1px solid #e3e3e3;
+  border-radius: 3px;
+  max-width: 400px;
+  margin: 85px auto 20px auto;
+  padding: 15px;
+}
+.base-wrapper h1 {
+  text-align: center;
+  margin-top: 5px;
+}
+.base-wrapper button {
+  margin: 0px auto 8px auto;
+}
+#register-wrapper {
+  background-color: #efefef;
+  border: 1px solid #e3e3e3;
+  border-radius: 3px;
+  max-width: 400px;
+  margin: 85px auto 20px auto;
+  padding: 15px;
+}
+#register-wrapper h1 {
+  text-align: center;
+  margin-top: 5px;
+}
+#register-wrapper button {
+  margin: 0px auto 8px auto;
+}
+#register-wrapper input {
+  margin-bottom: 8px;
+}
+#register-wrapper #register-btn {
+  width: 100%;
+}
