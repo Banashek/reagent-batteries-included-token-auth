@@ -21,6 +21,7 @@
                  [environ "1.0.0"]
                  [alandipert/storage-atom "1.2.4"]
                  [com.andrewmcveigh/cljs-time "0.3.10"]
+                 [funcool/promesa "0.1.3"]
                  [org.clojure/clojurescript "0.0-3308" :scope "provided"]
                  [secretary "1.2.3"]]
 
