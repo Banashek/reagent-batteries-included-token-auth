@@ -66,7 +66,7 @@
                                   [pjstadig/humane-test-output "0.7.0"]]
 
                    :source-paths ["env/dev/clj"]
-                   :plugins [[com.cemerick/clojurescript.test "0.3.2"]
+                   :plugins [[com.cemerick/clojurescript.test "0.3.3"]
                              [lein-less "1.7.2"]]
 
                    :injections [(require 'pjstadig.humane-test-output)
@@ -87,7 +87,7 @@
                                                :compiler {:output-to "target/test.js"
                                                           :optimizations :whitespace
                                                           :pretty-print true}}}
-                               :test-commands {"unit" ["slimerjs" :runner
+                               :test-commands {"unit" ["phantomjs" :runner
                                                        "test/vendor/es5-shim.js"
                                                        "test/vendor/es5-sham.js"
                                                        "test/vendor/console-polyfill.js"
