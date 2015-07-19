@@ -1,7 +1,6 @@
 (ns reagent-batteries-included-token-auth.auth.register
   (:require [reagent.core :as ratom]
             [ajax.core :refer [GET POST]]
-            [promesa.core :as p]
             [reagent-batteries-included-token-auth.shared-state :as ss]
             [reagent-batteries-included-token-auth.shared-functions :as sf]))
 
@@ -19,13 +18,6 @@
                                                                                :email    (:email    @user-info)}
                                                                :handler       register-response-handler
                                                                :error-handler register-error-handler}))
-
-;; ==========
-;  Unable to make promise wait until user is registered before logging in
-
-; (defn register-and-login-new-user []
-;   (-> (p/promise register-new-user)
-;       (p/then    (sf/attempt-login (:username @user-info) (:password @user-info)))))
 
 (defn registration-page []
   [:div {:id "register-wrapper"}
