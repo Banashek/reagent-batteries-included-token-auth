@@ -41,6 +41,5 @@
 
 (defn authenticated-page []
   (if (nil? (:username @ss/auth-creds-ratom))
-    (do
-      (session/put! :current-page #'login/login-page)
-      (reset! ss/secured-route #'github-page))))
+    (do (reset! ss/secured-route #'github-page) (login/login-page))
+    (github-page)))
