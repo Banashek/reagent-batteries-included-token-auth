@@ -10,7 +10,6 @@
 
 ;; ====
 ;  On booting the app get auth-creds from localStorage
-;; ====
 (reset! auth-creds-ratom @auth-creds-ls)
 
 (add-watch flash-message :the-flash

@@ -1,6 +1,6 @@
 (ns reagent-batteries-included-token-auth.auth.login
   (:require [reagent.core :as ratom]
-            [reagent-batteries-included-token-auth.shared-functions :as sf]))
+            [reagent-batteries-included-token-auth.auth.shared-functions :as sf]))
 
 (def password-visible (ratom/atom false))
 (def credentials (ratom/atom {:username "" :password ""}))

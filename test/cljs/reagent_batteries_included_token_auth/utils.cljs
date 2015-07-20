@@ -24,3 +24,6 @@
 (defn found? [re div]
   (let [res (.-innerHTML div)]
     (if (re-find re res) true false)))
+
+(defn not-found? [re div]
+  (complement (found? re div)))

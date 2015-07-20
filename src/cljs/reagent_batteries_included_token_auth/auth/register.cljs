@@ -2,7 +2,7 @@
   (:require [reagent.core :as ratom]
             [ajax.core :refer [GET POST]]
             [reagent-batteries-included-token-auth.shared-state :as ss]
-            [reagent-batteries-included-token-auth.shared-functions :as sf]))
+            [reagent-batteries-included-token-auth.auth.shared-functions :as sf]))
 
 (def user-info (ratom/atom {:username "" :password "" :email ""}))
 
