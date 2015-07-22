@@ -41,7 +41,7 @@
   (session/put! :current-page #'register/registration-page))
 
 (secretary/defroute "/lost-pass" []
-  (session/put! :current-page #'lost-pass/lost-pass-page))
+  (session/put! :current-page #'lost-pass/public-page))
 
 ;; -------------------------
 ;; History

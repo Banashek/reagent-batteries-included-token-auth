@@ -1,6 +1,6 @@
 (ns reagent-batteries-included-token-auth.auth.register
   (:require [reagent.core :as ratom]
-            [ajax.core :refer [GET POST]]
+            [ajax.core :refer [POST]]
             [reagent-batteries-included-token-auth.shared-state :as ss]
             [reagent-batteries-included-token-auth.auth.shared-functions :as sf]))
 
