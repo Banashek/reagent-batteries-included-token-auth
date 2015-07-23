@@ -9,8 +9,10 @@
               [reagent-batteries-included-token-auth.auth.login :as login]
               [reagent-batteries-included-token-auth.auth.register :as register]
               [reagent-batteries-included-token-auth.auth.lost-pass :as lost-pass]
+              [reagent-batteries-included-token-auth.auth.reset-pass :as reset-pass]
               [reagent-batteries-included-token-auth.shared-state :refer [nav-state flash-message]]
-              [reagent-batteries-included-token-auth.navigation :as nav])
+              [reagent-batteries-included-token-auth.navigation :as nav]
+              [reagent-batteries-included-token-auth.shared-state :as ss])
     (:import goog.History))
 
 (defn current-page []
@@ -42,6 +44,10 @@
 
 (secretary/defroute "/lost-pass" []
   (session/put! :current-page #'lost-pass/public-page))
+
+(secretary/defroute "/reset-pass/:id" [id]
+  (swap! ss/route-params assoc :reset-pass-id id)
+  (session/put! :current-page #'reset-pass/public-page))
 
 ;; -------------------------
 ;; History
