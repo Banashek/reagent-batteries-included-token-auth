@@ -12,7 +12,6 @@
 (defn active-route? [route-name]
   (if (= route-name (:active-route @nav-state)) "active" ""))
 
-
 (defn token-fresh? []
   (let [set-at (coerce-t/from-long (:time-stamp @auth-creds-ratom))
         now    (t/date-time (t/now))
