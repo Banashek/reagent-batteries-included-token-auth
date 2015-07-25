@@ -9,6 +9,7 @@
               [reagent-batteries-included-token-auth.auth.login :as login]
               [reagent-batteries-included-token-auth.auth.register :as register]
               [reagent-batteries-included-token-auth.auth.lost-pass :as lost-pass]
+              [reagent-batteries-included-token-auth.auth.change-pass :as change-pass]
               [reagent-batteries-included-token-auth.auth.reset-pass :as reset-pass]
               [reagent-batteries-included-token-auth.shared-state :refer [nav-state flash-message]]
               [reagent-batteries-included-token-auth.navigation :as nav]
@@ -48,6 +49,9 @@
 (secretary/defroute "/reset-pass/:id" [id]
   (swap! ss/route-params assoc :reset-pass-id id)
   (session/put! :current-page #'reset-pass/public-page))
+
+(secretary/defroute "/change-pass" []
+  (session/put! :current-page #'change-pass/authenticated-page))
 
 ;; -------------------------
 ;; History

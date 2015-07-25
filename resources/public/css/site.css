@@ -120,6 +120,27 @@
 #reset-wrapper #pass-reset-btn {
   width: 100%;
 }
+#change-pass-wrapper {
+  background-color: #efefef;
+  border: 1px solid #e3e3e3;
+  border-radius: 3px;
+  max-width: 400px;
+  margin: 85px auto 20px auto;
+  padding: 15px;
+}
+#change-pass-wrapper h1 {
+  text-align: center;
+  margin-top: 5px;
+}
+#change-pass-wrapper button {
+  margin: 0px auto 8px auto;
+}
+#change-pass-wrapper input {
+  margin-bottom: 8px;
+}
+#change-pass-wrapper #change-pass-btn {
+  width: 100%;
+}
 .btn-outline {
   background-color: transparent;
   color: inherit;

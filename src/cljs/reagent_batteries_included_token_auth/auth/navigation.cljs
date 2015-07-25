@@ -40,7 +40,7 @@
 (defn auth-nav-mobile-logged-in []
   [:div
     [:div {:class "mobile-menu-header"} [:h3 "Logout"]]
-    [:li {:class "mobile-menu-link"} [:a {:href "#/" :on-click #(mobile-nav-click "/" "register")} "Change Password"]]
+    [:li {:class "mobile-menu-link"} [:a {:href "#/" :on-click #(mobile-nav-click "/change-pass" "change-pass")} "Change Password"]]
     [:li {:class "mobile-menu-link"} [:a {:href "#/" :on-click #(do (remove-local-storage! :auth-creds) (mobile-nav-click "/" "index"))} "Logout"]]])
 
 (defn auth-nav-mobile []
