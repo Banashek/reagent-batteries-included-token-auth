@@ -1,6 +1,7 @@
 (ns reagent-batteries-included-token-auth.auth.shared-functions
   (:require [ajax.core :refer [GET]]
             [secretary.core :as secretary :include-macros true]
+            [reagent.session :as session]
             [cljs-time.core :as t]
             [cljs-time.coerce :as coerce-t]
             [goog.crypt.base64 :as b64]
@@ -20,9 +21,9 @@
   (reset! ss/flash-message {:kind "success" :text (str "Welcome " (:username response))})
   (if (= @ss/secured-route "")
     (do (swap! ss/nav-state assoc :active-route "/index")
-        (secretary/dispatch! "/index")
+        (session/put! :current-page #'index/index-page)
         (set! (.-location js/window) "#/"))
-    (do (secretary.dispatch! @ss/secured-route) (reset! ss/secured-route ""))))
+    (do (session/put! :current-page @ss/secured-route) (reset! ss/secured-route ""))))
 
 (defn login-error-handler [{:keys [status status-text]}]
   (reset! ss/flash-message {:kind "error" :text status-text}))

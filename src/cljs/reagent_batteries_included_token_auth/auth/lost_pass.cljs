@@ -1,6 +1,7 @@
 (ns reagent-batteries-included-token-auth.auth.lost-pass
   (:require [reagent.core :as ratom]
             [secretary.core :as secretary :include-macros true]
+            [reagent.session :as session]
             [ajax.core :refer [POST]]
             [reagent-batteries-included-token-auth.shared-state :as ss]
             [reagent-batteries-included-token-auth.index :as index]))
@@ -14,7 +15,7 @@
   (reset! ss/flash-message {:kind "success" :text (:message response)})
   (reset! user-email "")
   (swap! ss/nav-state assoc :active-route "/index")
-  (secretary/dispatch! "/index")
+  (session/put! :current-page #'index/index-page)
   (set! (.-location js/window) "#/"))
 
 (defn request-reset-error-handler [{:keys [status status-text]}]

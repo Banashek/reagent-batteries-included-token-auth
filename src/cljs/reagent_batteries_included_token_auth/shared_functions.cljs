@@ -21,7 +21,6 @@
     (< delta 15)))
 
 (defn refresh-token-success-handler [response]
-  (.log js/console "Token should now be refreshed")
   (swap! ss/auth-creds-ls assoc :token (:token response))
   (swap! ss/auth-creds-ls assoc :refresh-token (:refreshToken response))
   (swap! ss/auth-creds-ls assoc :time-stamp (coerce-t/to-long (t/date-time (t/now)))))

@@ -1,8 +1,10 @@
 (ns reagent-batteries-included-token-auth.auth.change-pass
   (:require [reagent.core :as ratom]
             [secretary.core :as secretary :include-macros true]
+            [reagent.session :as session]
             [ajax.core :refer [PATCH]]
             [promesa.core :as p]
+            [reagent-batteries-included-token-auth.index :as index]
             [reagent-batteries-included-token-auth.shared-state :as ss]
             [reagent-batteries-included-token-auth.shared-functions :as sf]
             [reagent-batteries-included-token-auth.auth.login :as login]))
@@ -10,10 +12,9 @@
 (def new-pass (ratom/atom ""))
 
 (defn change-pass-handler [response]
-  (.log js/console "Password should now be updated")
   (reset! ss/flash-message {:kind "success" :text "Password successfully changed"})
   (swap! ss/nav-state assoc :active-route "/index")
-  (secretary/dispatch! "/index")
+  (session/put! :current-page #'index/index-page)
   (set! (.-location js/window) "#/"))
 
 (defn change-pass-error-handler [{:keys [status status-text]}]
