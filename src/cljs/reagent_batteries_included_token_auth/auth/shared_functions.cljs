@@ -11,6 +11,7 @@
 ;; ==============================
 ;  LogIn User
 (defn login-response-handler [response]
+  (swap! ss/auth-creds-ls assoc :id (:id response))
   (swap! ss/auth-creds-ls assoc :token (:token response))
   (swap! ss/auth-creds-ls assoc :refresh-token (:refreshToken response))
   (swap! ss/auth-creds-ls assoc :permissions (:permissions response))
