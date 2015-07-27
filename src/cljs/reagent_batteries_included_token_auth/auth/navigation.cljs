@@ -1,7 +1,18 @@
 (ns reagent-batteries-included-token-auth.auth.navigation
-  (:require [reagent-batteries-included-token-auth.shared-state :refer [auth-creds-ratom]]
-            [reagent-batteries-included-token-auth.shared-functions :refer [mobile-nav-click active-route?]]
-            [alandipert.storage-atom :refer [remove-local-storage!]]))
+  (:require [ajax.core :refer [DELETE]]
+            [alandipert.storage-atom :refer [remove-local-storage!]]
+            [reagent-batteries-included-token-auth.shared-state :as ss]
+            [reagent-batteries-included-token-auth.shared-functions :refer [mobile-nav-click active-route?]]))
+
+(defn logout-response-handler [response]
+  (remove-local-storage! :auth-creds))
+
+(defn logout-error-handler [{:keys [status status-text]}]
+  (remove-local-storage! :auth-creds))
+
+(defn logout []
+  (DELETE (str "https://button-pusher-server.herokuapp.com/api/refresh-token/" (:refresh-token @ss/auth-creds-ratom)) {:handler         logout-response-handler
+                                                                                                                       :error-handler   logout-error-handler}))
 
 (defn auth-nav-logged-in []
   [:ul {:class "nav navbar-nav navbar-right"}
@@ -10,7 +21,7 @@
       [:ul {:class "dropdown-menu"}
         [:li [:a {:href "#/change-pass"} [:i {:class "nav-icon icon glyphicon glyphicon-refresh"}] "Change Password"]]
         [:li {:class "divider"}]
-        [:li {:id "log-in-or-out" :on-click #(remove-local-storage! :auth-creds)} [:a {:href "#/"} [:i {:class "nav-icon icon glyphicon glyphicon-off"}] "Logout"]]]]])
+        [:li {:id "log-in-or-out" :on-click #(logout)} [:a {:href "#/"} [:i {:class "nav-icon icon glyphicon glyphicon-off"}] "Logout"]]]]])
 
 (defn auth-nav-not-logged-in []
   [:ul {:class "nav navbar-nav navbar-right"}
@@ -23,7 +34,7 @@
         [:li {:id "log-in-or-out"} [:a {:href "#/login"} [:i {:class "nav-icon icon glyphicon glyphicon-off"}] "Login"]]]]])
 
 (defn auth-nav-desktop []
-  (if (:username @auth-creds-ratom)
+  (if (:username @ss/auth-creds-ratom)
     [auth-nav-logged-in]
     [auth-nav-not-logged-in]))
 
@@ -41,10 +52,10 @@
   [:div
     [:div {:class "mobile-menu-header"} [:h3 "Logout"]]
     [:li {:class "mobile-menu-link"} [:a {:href "#/" :on-click #(mobile-nav-click "/change-pass" "change-pass")} "Change Password"]]
-    [:li {:class "mobile-menu-link"} [:a {:href "#/" :on-click #(do (remove-local-storage! :auth-creds) (mobile-nav-click "/" "index"))} "Logout"]]])
+    [:li {:class "mobile-menu-link"} [:a {:href "#/" :on-click #(do (logout) (mobile-nav-click "/" "index"))} "Logout"]]])
 
 (defn auth-nav-mobile []
-  (if (:username @auth-creds-ratom)
+  (if (:username @ss/auth-creds-ratom)
     [auth-nav-mobile-logged-in]
     [auth-nav-mobile-not-logged-in]))
 
