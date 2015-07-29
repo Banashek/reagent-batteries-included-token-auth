@@ -1,6 +1,7 @@
 (ns reagent-batteries-included-token-auth.auth.register
   (:require [reagent.core :as ratom]
             [ajax.core :refer [POST]]
+            [reagent-batteries-included-token-auth.config :refer [endpoints]]
             [reagent-batteries-included-token-auth.shared-state :as ss]
             [reagent-batteries-included-token-auth.auth.shared-functions :as sf]))
 
@@ -13,11 +14,11 @@
   (sf/attempt-login (:username @user-info) (:password @user-info)))
 
 (defn register-new-user []
-  (POST "https://button-pusher-server.herokuapp.com/api/user" {:params        {:password (:password @user-info)
-                                                                               :username (:username @user-info)
-                                                                               :email    (:email    @user-info)}
-                                                               :handler       register-response-handler
-                                                               :error-handler register-error-handler}))
+  (POST (:user endpoints) {:params        {:password (:password @user-info)
+                           :username      (:username @user-info)
+                           :email         (:email    @user-info)}
+                           :handler       register-response-handler
+                           :error-handler register-error-handler}))
 
 (defn registration-page []
   [:div {:id "register-wrapper"}

@@ -3,6 +3,7 @@
             [ajax.core :refer [POST]]
             [reagent.session :as session]
             [secretary.core :as secretary :include-macros true]
+            [reagent-batteries-included-token-auth.config :refer [endpoints]]
             [reagent-batteries-included-token-auth.shared-state :as ss]
             [reagent-batteries-included-token-auth.index :as index]))
 
@@ -18,13 +19,13 @@
   (reset! ss/flash-message {:kind "error" :text status-text}))
 
 (defn reset-pass []
-  (POST "https://button-pusher-server.herokuapp.com/api/password/reset-confirm" {:params {:newPassword @new-password
-                                                                                          :resetKey    (:reset-pass-id @ss/route-params)}
-                                                                                 :handler         reset-pass-request-handler
-                                                                                 :error-handler   reset-pass-error-request-handler
-                                                                                 :response-format :json
-                                                                                 :keywords?       true
-                                                                                 :prefix          true}))
+  (POST (:reset-confirm endpoints) {:params          {:newPassword @new-password
+                                    :resetKey        (:reset-pass-id @ss/route-params)}
+                                    :handler         reset-pass-request-handler
+                                    :error-handler   reset-pass-error-request-handler
+                                    :response-format :json
+                                    :keywords?       true
+                                    :prefix          true}))
 
 (defn public-page []
   [:div {:id "reset-wrapper"}

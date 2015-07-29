@@ -1,6 +1,7 @@
 (ns reagent-batteries-included-token-auth.auth.navigation
   (:require [ajax.core :refer [DELETE]]
             [alandipert.storage-atom :refer [remove-local-storage!]]
+            [reagent-batteries-included-token-auth.config :refer [endpoints]]
             [reagent-batteries-included-token-auth.shared-state :as ss]
             [reagent-batteries-included-token-auth.shared-functions :refer [mobile-nav-click active-route?]]))
 
@@ -11,8 +12,8 @@
   (remove-local-storage! :auth-creds))
 
 (defn logout []
-  (DELETE (str "https://button-pusher-server.herokuapp.com/api/refresh-token/" (:refresh-token @ss/auth-creds-ratom)) {:handler         logout-response-handler
-                                                                                                                       :error-handler   logout-error-handler}))
+  (DELETE (str (:refresh-token endpoints) (:refresh-token @ss/auth-creds-ratom)) {:handler         logout-response-handler
+                                                                                  :error-handler   logout-error-handler}))
 
 (defn auth-nav-logged-in []
   [:ul {:class "nav navbar-nav navbar-right"}

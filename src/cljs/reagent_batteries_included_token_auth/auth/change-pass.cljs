@@ -5,6 +5,7 @@
             [ajax.core :refer [PATCH]]
             [promesa.core :as p]
             [reagent-batteries-included-token-auth.index :as index]
+            [reagent-batteries-included-token-auth.config :refer [endpoints]]
             [reagent-batteries-included-token-auth.shared-state :as ss]
             [reagent-batteries-included-token-auth.shared-functions :as sf]
             [reagent-batteries-included-token-auth.auth.login :as login]))
@@ -21,13 +22,15 @@
   (reset! ss/flash-message {:kind "error" :text status-text}))
 
 (defn change-pass-request []
-  (PATCH (str "https://button-pusher-server.herokuapp.com/api/user/" (:id @ss/auth-creds-ratom)) {:headers         {"Authorization" (str "Token " (:token @ss/auth-creds-ratom))}
-                                                                                                  :params          {:password   @new-pass}
-                                                                                                  :handler         change-pass-handler
-                                                                                                  :error-handler   change-pass-error-handler
-                                                                                                  :response-format :json
-                                                                                                  :keywords?       true
-                                                                                                  :prefix          true}))
+  (let [endpoint    (str (:user endpoints) "/" (:id @ss/auth-creds-ratom))
+        auth-header {"Authorization" (str "Token " (:token @ss/auth-creds-ratom))}]
+    (PATCH endpoint {:headers         auth-header
+                     :params          {:password @new-pass}
+                     :handler         change-pass-handler
+                     :error-handler   change-pass-error-handler
+                     :response-format :json
+                     :keywords?       true
+                     :prefix          true})))
 
 (defn change-pass []
   (if (sf/token-fresh?)

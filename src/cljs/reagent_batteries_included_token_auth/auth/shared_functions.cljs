@@ -6,6 +6,7 @@
             [cljs-time.coerce :as coerce-t]
             [goog.crypt.base64 :as b64]
             [secretary.core :as secretary :include-macros true]
+            [reagent-batteries-included-token-auth.config :refer [endpoints]]
             [reagent-batteries-included-token-auth.shared-state :as ss]
             [reagent-batteries-included-token-auth.index :as index]))
 
@@ -32,9 +33,9 @@
   (str "Basic " (b64/encodeString (str username ":" password))))
 
 (defn attempt-login [username password]
-  (GET "https://button-pusher-server.herokuapp.com/api/auth" {:headers         {"Authorization" (auth-header username password)}
-                                                              :handler         login-response-handler
-                                                              :error-handler   login-error-handler
-                                                              :response-format :json
-                                                              :keywords?       true
-                                                              :prefix          true}))
+  (GET (:auth endpoints) {:headers         {"Authorization" (auth-header username password)}
+                          :handler         login-response-handler
+                          :error-handler   login-error-handler
+                          :response-format :json
+                          :keywords?       true
+                          :prefix          true}))

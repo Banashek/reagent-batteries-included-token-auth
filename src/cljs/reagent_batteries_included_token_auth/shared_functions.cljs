@@ -4,6 +4,7 @@
             [promesa.core :as p]
             [cljs-time.coerce :as coerce-t]
             [secretary.core :as secretary :include-macros true]
+            [reagent-batteries-included-token-auth.config :refer [endpoints]]
             [reagent-batteries-included-token-auth.shared-state :as ss]))
 
 (defn mobile-nav-click [route active-name]
@@ -26,10 +27,11 @@
   (swap! ss/auth-creds-ls assoc :time-stamp (coerce-t/to-long (t/date-time (t/now)))))
 
 (defn refresh-token-request []
-  (p/promise
-    (fn [resolve reject]
-      (GET (str "https://button-pusher-server.herokuapp.com/api/refresh-token/" (:refresh-token @ss/auth-creds-ratom)) {:handler resolve
-                                                                                                                        :error-handler reject}))))
+  (let [endpoint (str (:refresh-token endpoints) (:refresh-token @ss/auth-creds-ratom))]
+    (p/promise
+      (fn [resolve reject]
+        (GET endpoint {:handler resolve
+                       :error-handler reject})))))
 
 (defn refresh-token [callback]
   (-> (refresh-token-request)
