@@ -30,5 +30,5 @@
     [:div {:id "pass-toggle" :class (str "glyphicon " (if @password-visible "glyphicon-eye-open" "glyphicon-eye-close")) :on-click #(toggle-visibility)}]
     [:input {:type "button" :id "login-submit-btn" :class "btn btn-info btn-outline" :value "Log In" :on-click #(sf/attempt-login (:username @credentials) (:password @credentials))}]
     [:div {:class "row login-links-row"}
-      [:div {:class "col-xs-6"} [:a {:href "google.com"} "Register"]]
-      [:div {:class "col-xs-6 forgot-pass-link"} [:a {:href "google.com"} "Forgot Password"]]]])
+      [:div {:class "col-xs-6"} [:a {:href "#/register"} "Register"]]
+      [:div {:class "col-xs-6 forgot-pass-link"} [:a {:href "#/lost-pass"} "Forgot Password"]]]])
