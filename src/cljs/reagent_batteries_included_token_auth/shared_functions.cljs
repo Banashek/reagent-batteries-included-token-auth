@@ -26,14 +26,21 @@
   (swap! ss/auth-creds-ls assoc :refresh-token (:refreshToken response))
   (swap! ss/auth-creds-ls assoc :time-stamp (coerce-t/to-long (t/date-time (t/now)))))
 
+(defn refresh-token-error-handler [error]
+  (reset! ss/flash-message {:kind "error" :text "Request failed. Logout and try again"}))
+
 (defn refresh-token-request []
   (let [endpoint (str (:refresh-token endpoints) (:refresh-token @ss/auth-creds-ratom))]
     (p/promise
       (fn [resolve reject]
-        (GET endpoint {:handler resolve
-                       :error-handler reject})))))
+        (GET endpoint {:handler         resolve
+                       :error-handler   reject
+                       :response-format :json
+                       :keywords?       true
+                       :prefix          true})))))
 
 (defn refresh-token [callback]
   (-> (refresh-token-request)
-      (p/then #(refresh-token-success-handler %))
-      (p/then (callback))))
+      (p/then #(do (refresh-token-success-handler %)
+                   (callback)))
+      (p/catch #(refresh-token-error-handler %))))
