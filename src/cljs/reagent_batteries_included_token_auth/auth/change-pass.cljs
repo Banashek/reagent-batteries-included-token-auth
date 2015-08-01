@@ -45,11 +45,11 @@
             :class       "form-control"
             :placeholder "New Password"
             :on-change   #(reset! new-pass (-> % .-target .-value))}]
-   [:input {:type     "button"
-            :id       "change-pass-btn"
-            :class    "btn btn-info btn-outline"
-            :value    "Update Password"
-            :on-click #(change-pass)}]])
+   [:input {:type        "button"
+            :id          "change-pass-btn"
+            :class       "btn btn-info btn-outline"
+            :value       "Update Password"
+            :on-click    #(change-pass)}]])
 
 (defn authenticated-page []
   (if (nil? (:username @ss/auth-creds-ratom))

@@ -1,6 +1,5 @@
 (ns reagent-batteries-included-token-auth.auth.shared-functions
   (:require [ajax.core :refer [GET]]
-            [secretary.core :as secretary :include-macros true]
             [reagent.session :as session]
             [cljs-time.core :as t]
             [cljs-time.coerce :as coerce-t]
