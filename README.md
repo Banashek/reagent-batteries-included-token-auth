@@ -1,10 +1,6 @@
-# NOTICE
-
-This is a work in progress. Not currently fully functional
-
 # Reagent batteries include token auth
 
-A Reagent app that provides a responsive navigation and fully functional token authentication.
+An example of a Reagent app that provides a responsive navigation and user account management.
 
 ## Run locally
 
