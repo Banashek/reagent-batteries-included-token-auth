@@ -10,7 +10,7 @@
                  [ring-server "0.4.0"]
                  [cljsjs/react "0.13.3-0"]
                  [reagent "0.5.0"]
-                 [reagent-forms "0.5.1"]
+                 [reagent-forms "0.5.6"]
                  [reagent-utils "0.1.5"]
                  [ring "1.3.2"]
                  [ring/ring-defaults "0.1.5"]
@@ -22,7 +22,7 @@
                  [environ "1.0.0"]
                  [alandipert/storage-atom "1.2.4"]
                  [com.andrewmcveigh/cljs-time "0.3.10"]
-                 [org.clojure/clojurescript "0.0-3308" :scope "provided"]
+                 [org.clojure/clojurescript "1.7.107" :scope "provided"]
                  [secretary "1.2.3"]]
 
   :plugins [[lein-environ "1.0.0"]
@@ -58,7 +58,7 @@
 
   :profiles {:dev {:repl-options {:init-ns reagent-batteries-included-token-auth.repl}
 
-                   :dependencies [[ring-mock "0.1.5"]
+                   :dependencies [[ring/ring-mock "0.2.0"]
                                   [ring/ring-devel "1.3.2"]
                                   [leiningen-core "2.5.1"]
                                   [lein-figwheel "0.3.3"]
@@ -67,7 +67,7 @@
 
                    :source-paths ["env/dev/clj"]
                    :plugins [[com.cemerick/clojurescript.test "0.3.3"]
-                             [lein-less "1.7.2"]]
+                             [lein-less "1.7.5"]]
 
                    :injections [(require 'pjstadig.humane-test-output)
                                 (pjstadig.humane-test-output/activate!)]
